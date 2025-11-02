@@ -1,5 +1,8 @@
 # Personal App
 
+[![Version](https://img.shields.io/badge/version-v1.0.1-blue.svg)](https://github.com/anand2532/personal-app/releases)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 A modern Android application featuring a terminal-style interface with ChatGPT integration, weather information, and project management capabilities.
 
 ## 🚀 Features
@@ -224,5 +227,5 @@ This project is open source. See repository for license details.
 
 ---
 
-**Version**: 1.0.0  
-**Last Updated**: November 2025
+**Version**: 1.0.1  
+**Last Updated**: November 2024

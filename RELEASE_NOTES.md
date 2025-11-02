@@ -1,4 +1,31 @@
-# Release v1.0.0 - Personal App with Terminal UI
+# Release Notes
+
+## Release v1.0.1 - Clean Terminal UI (Latest)
+
+**Release Date:** November 2024
+
+### 🎨 UI Improvements
+- **Simplified Section Headers**: Removed decorative box-drawing characters (║) around PROJECTS and CHAT ASSISTANT sections
+- **Cleaner Layout**: Removed footer decorative line for a more minimal terminal aesthetic
+- **Better Spacing**: Improved visual spacing and readability throughout the app
+- **Terminal Cursor**: Added custom terminal cursor drawable for better input visibility in chat field
+
+### ✨ Features
+- Clean terminal UI with simplified section headers
+- Time | Temp display in top right toolbar (clickable)
+- Weather & Time page with full terminal styling
+- Terminal cursor drawable for better input visibility
+- Improved visual spacing and readability
+
+### 🔧 Technical Changes
+- Updated `activity_main.xml` - Removed decorative lines from section headers
+- Updated `activity_weather_time.xml` - Full terminal UI styling
+- Added `cursor_terminal.xml` - Custom terminal cursor drawable
+- Updated theme styling for consistent terminal appearance
+
+---
+
+## Release v1.0.0 - Personal App with Terminal UI
 
 ## Features
 
