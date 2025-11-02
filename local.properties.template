@@ -1,0 +1,9 @@
+# This is a template file. Copy this to local.properties and add your API key.
+# local.properties is in .gitignore and should not be committed to version control.
+
+# Add your OpenWeatherMap API key here
+WEATHER_API_KEY=YOUR_API_KEY_HERE
+
+# Add your ChatGPT API key here (get from https://platform.openai.com/api-keys)
+CHATGPT_API_KEY=YOUR_CHATGPT_API_KEY_HERE
+
