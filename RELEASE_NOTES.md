@@ -1,0 +1,71 @@
+# Release v1.0.0 - Personal App with Terminal UI
+
+## Features
+
+### 🖥️ Terminal-Style Interface
+- Custom TerminalTextView with full ANSI color code support
+- Terminal-style prompts: `anand@personal-app:~$` and `assistant>`
+- 16-color terminal palette with dark background
+- Box drawing characters for elegant borders
+
+### 💬 ChatGPT Integration
+- Real-time chat with OpenAI ChatGPT API
+- Terminal-style message formatting
+- Color-coded messages (user, assistant, system)
+- Error handling and loading states
+
+### 🌤️ Weather & Time
+- Live date and time display (updates every second)
+- Location-based weather information
+- OpenWeatherMap API integration
+- Detailed weather card with temperature, humidity, wind speed
+
+### 📱 Project Buttons
+- Four project slots (Project 1-4) ready for future implementation
+- Terminal-style UI for project interfaces
+- Command-line aesthetic
+
+### 🎨 Material Design 3
+- Modern Material Design 3 components
+- Responsive layout
+- Smooth animations and transitions
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/anand2532/personal-app.git
+   cd personal-app
+   ```
+
+2. Add API keys to `local.properties`:
+   ```
+   WEATHER_API_KEY=your_openweathermap_api_key
+   CHATGPT_API_KEY=your_openai_api_key
+   ```
+
+3. Build and install:
+   ```bash
+   ./gradlew assembleDebug
+   adb install app/build/outputs/apk/debug/app-debug.apk
+   ```
+
+## Requirements
+
+- Android SDK 24+ (Android 7.0+)
+- OpenWeatherMap API key (free tier available)
+- OpenAI API key (for ChatGPT features)
+
+## Technology Stack
+
+- Kotlin
+- Material Design 3
+- Retrofit for API calls
+- Coroutines for async operations
+- ViewModel & LiveData for architecture
+- Custom TerminalTextView with ANSI support
+
+---
+
+**Full Changelog**: https://github.com/anand2532/personal-app/compare/v0.1.0...v1.0.0
+

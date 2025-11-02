@@ -14,3 +14,9 @@
 .cxx
 local.properties
 
+# Build artifacts
+app/build/
+*.apk
+*.aab
+build/
+
