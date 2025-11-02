@@ -39,17 +39,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        // Terminal-style chat view
-        binding.chatMessagesTextView.setBackgroundColor(Color.parseColor("#1E1E1E"))
-        binding.chatMessagesTextView.setTextColor(Color.parseColor("#00FF00"))
-
-        // Weather/Time icon click
-        binding.weatherTimeIcon.setOnClickListener {
-            startActivity(Intent(this, WeatherTimeActivity::class.java))
+        // Terminal-style chat view - already styled in XML
+        // Improve EditText cursor visibility
+        binding.messageEditText.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                // Ensure cursor is visible when focused
+                val editText = view as android.widget.EditText
+                editText.setSelection(editText.text?.length ?: 0)
+            }
         }
-        
-        // Weather/Time text click
-        binding.weatherTimeCard.setOnClickListener {
+
+        // Weather/Time text click - opens weather/time page
+        binding.weatherTimeText.setOnClickListener {
             startActivity(Intent(this, WeatherTimeActivity::class.java))
         }
 
@@ -126,10 +127,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadInitialChatMessage() {
-        appendToChat("system", "╔════════════════════════════════════════╗")
-        appendToChat("system", "║   PERSONAL ASSISTANT TERMINAL v1.0    ║")
-        appendToChat("system", "╚════════════════════════════════════════╝")
-        appendToChat("system", "")
+        // Simple greeting - layout already has terminal header
         appendToChat("assistant", "Hi Anand, how can I help you?")
         // Try to fetch weather for the display
         weatherViewModel.fetchWeather(28.41, 77.04) // Default location
@@ -159,11 +157,8 @@ class MainActivity : AppCompatActivity() {
         terminal.appendTerminal(formattedMessage)
         
         // Scroll to bottom
-        binding.chatMessagesTextView.post {
-            val scrollAmount = binding.chatMessagesTextView.layout?.getLineTop(
-                binding.chatMessagesTextView.lineCount
-            ) ?: 0 - binding.chatMessagesTextView.height
-            binding.chatMessagesTextView.scrollTo(0, scrollAmount.coerceAtLeast(0))
+        binding.chatScrollView.post {
+            binding.chatScrollView.fullScroll(android.view.View.FOCUS_DOWN)
         }
     }
 

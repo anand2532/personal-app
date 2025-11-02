@@ -5,44 +5,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/terminal_background"
     tools:context=".MainActivity">
 
+    <!-- Terminal-style Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.PersonalApp">
+        android:background="@color/terminal_background"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/terminal_background"
             app:title="@string/app_name"
-            app:titleTextColor="@color/white">
+            app:titleTextColor="@color/terminal_text"
+            app:titleTextAppearance="@style/TerminalTextStyle">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/weatherTimeCard"
+                    <TextView
+                        android:id="@+id/weatherTimeText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
                         android:layout_marginEnd="16dp"
-                        app:cardBackgroundColor="@android:color/transparent"
-                        app:cardElevation="0dp"
+                        android:text="12:00"
+                        android:textColor="@color/terminal_text"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:textSize="14sp"
+                        android:padding="8dp"
                         android:clickable="true"
-                        android:focusable="true">
-
-                        <TextView
-                            android:id="@+id/weatherTimeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="12:00"
-                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:padding="8dp" />
-
-                    </com.google.android.material.card.MaterialCardView>
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -51,142 +47,27 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/terminal_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="12dp"
+            android:background="@color/terminal_background">
 
-            <!-- Weather/Time Icon Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/weatherTimeIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="12dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@android:drawable/ic_menu_compass"
-                        android:tint="@color/primary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Weather &amp; Time"
-                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:textColor="@color/primary" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Chat Section -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginBottom="24dp"
-                android:minHeight="300dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chat Assistant"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                        android:textColor="@color/primary"
-                        android:layout_marginBottom="12dp" />
-
-                    <androidx.core.widget.NestedScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent">
-
-                        <com.personal.app.TerminalTextView
-                            android:id="@+id/chatMessagesTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="@color/terminal_text"
-                            android:background="@color/terminal_background"
-                            android:padding="12dp"
-                            android:minHeight="200dp"
-                            android:textSize="13sp"
-                            android:lineSpacingExtra="2dp" />
-
-                    </androidx.core.widget.NestedScrollView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center_vertical">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="Type your message..."
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/messageEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:imeOptions="actionSend"
-                                android:inputType="text" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/sendButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Send"
-                            app:icon="@android:drawable/ic_menu_send"
-                            app:iconGravity="textStart" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Projects Section -->
+            <!-- Projects Section - Now at the top -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Projects"
-                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="@color/primary"
-                android:layout_marginBottom="12dp" />
+                android:text="PROJECTS"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"
+                android:background="@color/terminal_background" />
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -194,45 +75,48 @@
                 android:columnCount="2"
                 android:rowCount="2"
                 android:alignmentMode="alignMargins"
-                android:useDefaultMargins="false">
+                android:useDefaultMargins="false"
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/project1Button"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="@color/terminal_background"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/terminal_text"
+                    app:strokeWidth="1dp"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
+                    android:focusable="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="16dp"
-                        android:background="@android:color/transparent">
+                        android:padding="12dp"
+                        android:background="@color/terminal_background">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PROJECT 1"
-                            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold"
-                            android:fontFamily="monospace" />
+                            android:text="┌─ PROJECT 1"
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="[Interface]"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="monospace" />
+                            android:text="└─ [Interface]"
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:layout_marginTop="4dp" />
 
                     </LinearLayout>
 
@@ -241,39 +125,42 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/project2Button"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="@color/terminal_background"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/terminal_text"
+                    app:strokeWidth="1dp"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
+                    android:focusable="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="16dp">
+                        android:padding="12dp"
+                        android:background="@color/terminal_background">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PROJECT 2"
-                            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold"
-                            android:fontFamily="monospace" />
+                            android:text="┌─ PROJECT 2"
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="[Interface]"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="monospace" />
+                            android:text="└─ [Interface]"
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:layout_marginTop="4dp" />
 
                     </LinearLayout>
 
@@ -282,39 +169,42 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/project3Button"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="@color/terminal_background"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/terminal_text"
+                    app:strokeWidth="1dp"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
+                    android:focusable="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="16dp">
+                        android:padding="12dp"
+                        android:background="@color/terminal_background">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PROJECT 3"
-                            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold"
-                            android:fontFamily="monospace" />
+                            android:text="┌─ PROJECT 3"
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="[Interface]"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="monospace" />
+                            android:text="└─ [Interface]"
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:layout_marginTop="4dp" />
 
                     </LinearLayout>
 
@@ -323,39 +213,42 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/project4Button"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    android:layout_margin="6dp"
+                    app:cardBackgroundColor="@color/terminal_background"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/terminal_text"
+                    app:strokeWidth="1dp"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
+                    android:focusable="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="16dp">
+                        android:padding="12dp"
+                        android:background="@color/terminal_background">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PROJECT 4"
-                            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold"
-                            android:fontFamily="monospace" />
+                            android:text="┌─ PROJECT 4"
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="[Interface]"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@android:color/darker_gray"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="monospace" />
+                            android:text="└─ [Interface]"
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:layout_marginTop="4dp" />
 
                     </LinearLayout>
 
@@ -363,9 +256,121 @@
 
             </GridLayout>
 
+            <!-- Chat Section - Now smaller and at bottom -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHAT ASSISTANT"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"
+                android:background="@color/terminal_background" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/terminal_background"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/terminal_text"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="@color/terminal_background">
+
+                    <!-- Chat Messages - Small initial height -->
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/chatScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@color/terminal_background"
+                        android:scrollbars="vertical"
+                        android:fadeScrollbars="false">
+
+                        <com.personal.app.TerminalTextView
+                            android:id="@+id/chatMessagesTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/terminal_text"
+                            android:background="@color/terminal_background"
+                            android:padding="8dp"
+                            android:textSize="12sp"
+                            android:fontFamily="monospace"
+                            android:lineSpacingExtra="2dp" />
+
+                    </androidx.core.widget.NestedScrollView>
+
+                    <!-- Terminal-style Input -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:background="@color/terminal_background"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="anand@personal-app:~$ "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="4dp" />
+
+                        <EditText
+                            android:id="@+id/messageEditText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="type command..."
+                            android:textColor="@color/terminal_text"
+                            android:textColorHint="@color/terminal_user"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="monospace"
+                            android:textSize="13sp"
+                            android:textCursorDrawable="@drawable/cursor_terminal"
+                            android:imeOptions="actionSend"
+                            android:inputType="text"
+                            android:padding="4dp"
+                            android:textColorHighlight="@color/terminal_text"
+                            android:singleLine="true"
+                            android:textStyle="normal"
+                            android:minHeight="24dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/sendButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:text="[SEND]"
+                            android:textColor="@color/terminal_text"
+                            android:backgroundTint="@color/terminal_background"
+                            android:fontFamily="monospace"
+                            android:textSize="10sp"
+                            android:minHeight="32dp"
+                            android:paddingHorizontal="12dp"
+                            app:strokeColor="@color/terminal_text"
+                            app:strokeWidth="1dp"
+                            app:cornerRadius="2dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

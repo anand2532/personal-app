@@ -36,10 +36,19 @@ class ChatViewModel : ViewModel() {
                         ?: "No response from assistant"
                 } else {
                     val errorBody = response.errorBody()?.string() ?: response.message()
-                    _errorMessage.value = "Error: $errorBody"
+                    val errorCode = response.code()
+                    
+                    // Parse error message for better user experience
+                    val errorMessage = when (errorCode) {
+                        401 -> "Invalid API key. Please check your OpenAI API key in local.properties"
+                        429 -> "API quota exceeded. Please check your OpenAI billing and plan details.\nVisit: https://platform.openai.com/account/billing"
+                        500 -> "OpenAI server error. Please try again later."
+                        else -> "API Error ($errorCode): $errorBody"
+                    }
+                    _errorMessage.value = errorMessage
                 }
             } catch (e: Exception) {
-                _errorMessage.value = "Error: ${e.message}"
+                _errorMessage.value = "Network Error: ${e.message}\nPlease check your internet connection."
             } finally {
                 _isLoading.value = false
             }
