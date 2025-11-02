@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Personal App</string>
+    <string name="date_time_label">Date &amp; Time</string>
+    <string name="weather_label">Weather</string>
+    <string name="location_label">Location</string>
+    <string name="temperature_label">Temperature</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="loading">Loading…</string>
+    <string name="error_loading_weather">Error loading weather data</string>
+    <string name="refresh">Refresh</string>
+</resources>
+
