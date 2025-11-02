@@ -77,35 +77,33 @@ class WeatherTimeActivity : AppCompatActivity() {
         viewModel.weatherData.observe(this) { weather ->
             weather?.let {
                 binding.locationTextView.text = it.location
-                binding.temperatureTextView.text = "${it.temperature}°C"
-                binding.weatherDescriptionTextView.text = it.description
-                binding.feelsLikeTextView.text = "${it.feelsLike}°C"
+                binding.temperatureTextView.text = "${it.temperature.toInt()}°C"
+                binding.descriptionTextView.text = it.description
+                binding.feelsLikeTextView.text = "${it.feelsLike.toInt()}°C"
                 binding.humidityTextView.text = "${it.humidity}%"
                 binding.windSpeedTextView.text = "${it.windSpeed} m/s"
-                binding.weatherStatusTextView.visibility = android.view.View.GONE
             }
         }
 
         viewModel.errorMessage.observe(this) { error ->
             error?.let {
-                binding.weatherStatusTextView.text = it
-                binding.weatherStatusTextView.visibility = android.view.View.VISIBLE
+                binding.descriptionTextView.text = "Error: $it"
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
             if (isLoading) {
-                binding.weatherStatusTextView.text = getString(R.string.loading)
-                binding.weatherStatusTextView.visibility = android.view.View.VISIBLE
+                binding.locationTextView.text = "Loading..."
+                binding.temperatureTextView.text = "Loading..."
             }
         }
     }
 
     private fun updateDateTime() {
         val now = Date()
-        binding.currentDateTextView.text = dateFormat.format(now)
-        binding.currentTimeTextView.text = timeFormat.format(now)
+        binding.dateTextView.text = "Date: ${dateFormat.format(now)}"
+        binding.timeTextView.text = "Time: ${timeFormat.format(now)}"
     }
 
     private fun checkLocationPermission() {

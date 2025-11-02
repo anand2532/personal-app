@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.PersonalApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_variant</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorSurface">@color/surface</item>
+        <item name="colorPrimary">@color/terminal_text</item>
+        <item name="colorPrimaryVariant">@color/terminal_user</item>
+        <item name="colorOnPrimary">@color/terminal_background</item>
+        <item name="colorSecondary">@color/terminal_user</item>
+        <item name="colorOnSecondary">@color/terminal_background</item>
+        <item name="android:colorBackground">@color/terminal_background</item>
+        <item name="colorSurface">@color/terminal_background</item>
+        <item name="android:textColorPrimary">@color/terminal_text</item>
+        <item name="android:windowBackground">@color/terminal_background</item>
+    </style>
+    
+    <!-- Terminal Text Style -->
+    <style name="TerminalTextStyle">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/terminal_text</item>
     </style>
 </resources>
-

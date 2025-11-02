@@ -5,245 +5,369 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".MainActivity">
+    android:background="@color/terminal_background"
+    tools:context=".WeatherTimeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/terminal_background"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="@string/app_name"
-            app:titleTextColor="@color/white" />
+            android:background="@color/terminal_background"
+            app:title="Weather &amp; Time"
+            app:titleTextColor="@color/terminal_text"
+            app:titleTextAppearance="@style/TerminalTextStyle"
+            app:navigationIconTint="@color/terminal_text" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/terminal_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/terminal_background">
 
-            <!-- Date & Time Card -->
+            <!-- Terminal Header -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="╔═══════════════════════════════════════╗"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="║   WEATHER &amp; TIME INFORMATION          ║"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="╚═══════════════════════════════════════╝"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Date and Time Section -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                app:cardBackgroundColor="@color/terminal_background"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/terminal_text"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="16dp"
+                    android:background="@color/terminal_background">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/date_time_label"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                        android:textColor="@color/primary" />
+                        android:text="┌─ DATE &amp; TIME"
+                        android:textColor="@color/terminal_text"
+                        android:fontFamily="monospace"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
 
                     <TextView
-                        android:id="@+id/currentDateTextView"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/dateTextView"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="--"
-                        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-                        android:textColor="@android:color/black" />
+                        android:text="Date: Loading..."
+                        android:textColor="@color/terminal_user"
+                        android:fontFamily="monospace"
+                        android:textSize="14sp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp" />
 
                     <TextView
-                        android:id="@+id/currentTimeTextView"
+                        android:id="@+id/timeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Time: Loading..."
+                        android:textColor="@color/terminal_text"
+                        android:fontFamily="monospace"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="4dp" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="--"
-                        android:textAppearance="@style/TextAppearance.Material3.DisplaySmall"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold" />
+                        android:text="└─"
+                        android:textColor="@color/terminal_text"
+                        android:fontFamily="monospace"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Weather Card -->
+            <!-- Weather Information Section -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                app:cardBackgroundColor="@color/terminal_background"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/terminal_text"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="16dp"
+                    android:background="@color/terminal_background">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="┌─ WEATHER INFORMATION"
+                        android:textColor="@color/terminal_text"
+                        android:fontFamily="monospace"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Location: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/locationTextView"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/weather_label"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="@color/primary" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/refreshButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/refresh"
-                            style="@style/Widget.Material3.Button.TextButton"
-                            app:icon="@android:drawable/ic_menu_rotate" />
-
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/locationTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="--"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="@android:color/black" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temperature: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/temperatureTextView"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="--"
-                            android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
-                            android:textColor="@color/primary"
+                            android:layout_weight="1"
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/weatherDescriptionTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="--"
-                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                            android:textColor="@android:color/black" />
-
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp">
+                            android:text="Feels Like: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/feels_like"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
-
-                            <TextView
-                                android:id="@+id/feelsLikeTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/feelsLikeTextView"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="8dp">
+                            android:layout_weight="1"
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/humidity"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
 
-                            <TextView
-                                android:id="@+id/humidityTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:text="Description: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/wind_speed"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                        <TextView
+                            android:id="@+id/descriptionTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/windSpeedTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="--"
-                                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                                android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
 
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Humidity: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
 
+                        <TextView
+                            android:id="@+id/humidityTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wind Speed: "
+                            android:textColor="@color/terminal_user"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/windSpeedTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Loading..."
+                            android:textColor="@color/terminal_text"
+                            android:fontFamily="monospace"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/weatherStatusTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/loading"
-                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                        android:textColor="@android:color/darker_gray"
-                        android:visibility="gone" />
+                        android:text="└─"
+                        android:textColor="@color/terminal_text"
+                        android:fontFamily="monospace"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- Refresh Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/refreshButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[REFRESH DATA]"
+                android:textColor="@color/terminal_text"
+                android:backgroundTint="@color/terminal_background"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:minHeight="48dp"
+                app:strokeColor="@color/terminal_text"
+                app:strokeWidth="1dp"
+                app:cornerRadius="4dp"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_marginTop="8dp" />
+
+            <!-- Terminal Footer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="╚═══════════════════════════════════════╝"
+                android:textColor="@color/terminal_text"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="24dp" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
